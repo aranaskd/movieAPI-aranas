@@ -1,0 +1,181 @@
+/* AdminDashboard.css */
+
+/* Main Container */
+.admin-container {
+    margin-top: 2rem;
+    padding: 2rem;
+    background-color: #ffffff;
+    border-radius: 12px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+  }
+  
+  /* Title Styling */
+  .admin-container h1 {
+    font-size: 2.5rem;
+    font-weight: bold;
+    color: #34495e;
+    margin-bottom: 1.5rem;
+  }
+  
+  /* Table Styling */
+  .admin-container .table {
+    margin-top: 1rem;
+    border-collapse: separate;
+    border-spacing: 0;
+  }
+  
+  .admin-container .table th {
+    background-color: #007bff;
+    color: #ffffff;
+    font-weight: 600;
+    border-top: none;
+    text-transform: uppercase;
+  }
+  
+  .admin-container .table td, .admin-container .table th {
+    padding: 0.8rem;
+    vertical-align: middle;
+  }
+  
+  .admin-container .table tbody tr {
+    transition: all 0.2s ease-in-out;
+  }
+  
+  .admin-container .table tbody tr:hover {
+    background-color: #f2f6fa;
+  }
+  
+  .admin-container .table td {
+    color: #5d6d7e;
+    border-color: #dee2e6;
+  }
+  
+  /* Button Styling */
+  .admin-container .btn-primary {
+    background-color: #1abc9c;
+    border: none;
+    color: #fff;
+    font-weight: 600;
+    padding: 0.5rem 1.2rem;
+    transition: all 0.2s ease-in-out;
+    margin-right: 1rem;
+  }
+  
+  .admin-container .btn-primary:hover {
+    background-color: #16a085;
+  }
+  
+  .admin-container .btn-warning {
+    background-color: #f39c12;
+    border: none;
+    color: #fff;
+    font-weight: 600;
+    padding: 0.4rem 1rem;
+    margin: 0.2rem;
+    transition: background-color 0.2s ease;
+  }
+  
+  .admin-container .btn-warning:hover {
+    background-color: #e67e22;
+  }
+  
+  .admin-container .btn-danger {
+    background-color: #e74c3c;
+    border: none;
+    color: #fff;
+    font-weight: 600;
+    padding: 0.4rem 1rem;
+    margin: 0.2rem;
+    transition: background-color 0.2s ease;
+  }
+  
+  .admin-container .btn-danger:hover {
+    background-color: #c0392b;
+  }
+  
+  /* Add & Update Movie Modals */
+  .modal-content {
+    border-radius: 8px;
+    background-color: #f9f9f9;
+  }
+  
+  .modal-header {
+    background-color: #007bff;
+    color: #ffffff;
+    border-bottom: none;
+    padding: 1.25rem;
+  }
+  
+  .modal-title {
+    font-weight: bold;
+  }
+  
+  .modal-body {
+    padding: 1.5rem;
+  }
+  
+  .modal-body input,
+  .modal-body textarea {
+    border-radius: 6px;
+    border: 1px solid #dfe6e9;
+  }
+  
+  .modal-footer {
+    border-top: none;
+    padding: 1.25rem;
+  }
+  
+  .modal-footer .btn-primary {
+    background-color: #1abc9c;
+    border: none;
+  }
+  
+  .modal-footer .btn-primary:hover {
+    background-color: #16a085;
+  }
+  
+  .modal-footer .btn-secondary {
+    background-color: #95a5a6;
+    border: none;
+  }
+  
+  .modal-footer .btn-secondary:hover {
+    background-color: #7f8c8d;
+  }
+  
+  /* Alert Styling */
+  .admin-container .alert {
+    font-size: 1rem;
+    margin-top: 1rem;
+    padding: 0.8rem;
+    color: #ffffff;
+    background-color: #e74c3c;
+    border: none;
+    border-radius: 8px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  }
+  
+  /* Form Styling within Modals */
+  .form-control {
+    margin-bottom: 1rem;
+    border: 1px solid #dfe6e9;
+    border-radius: 4px;
+    transition: box-shadow 0.2s ease;
+  }
+  
+  .form-control:focus {
+    box-shadow: 0 0 8px rgba(26, 188, 156, 0.4);
+    border-color: #1abc9c;
+  }
+  
+  /* Media Queries for Responsive Design */
+  @media (max-width: 768px) {
+    .admin-container h1 {
+      font-size: 2rem;
+    }
+  
+    .modal-header, .modal-footer {
+      padding: 1rem;
+    }
+  }
+  

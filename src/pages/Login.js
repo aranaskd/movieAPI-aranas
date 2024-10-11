@@ -6,12 +6,12 @@ import { Notyf } from 'notyf';
 import 'notyf/notyf.min.css';
 import '../styles/Login.css';
 
-const url_api = "http://localhost:4000";
+const url_api = "https://movieapp-api-lms1.onrender.com";
 
 function Login() {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
-  const { login } = useUser();
+  const { login } = useUser(); // Use login from useUser
   const navigate = useNavigate();
   const notyf = new Notyf();
 
@@ -23,15 +23,31 @@ function Login() {
         password,
       });
       if (response.data.access) {
-        login(response.data.access);
+        // Retrieve user details after successful login
+        await retrieveUserDetails(response.data.access);
         setEmail('');
         setPassword('');
         notyf.success('Login successful!');
-        navigate('/');
+        navigate('/'); // Navigate after successful login
       }
     } catch (error) {
       console.error('Error logging in', error);
       notyf.error('Invalid login credentials, please try again.');
+    }
+  };
+
+  const retrieveUserDetails = async (token) => {
+    try {
+      const response = await axios.get(`${url_api}/users/details`, {
+        headers: { Authorization: `Bearer ${token}` },
+      });
+    
+      const data = response.data;
+
+      // Update the user context with id and isAdmin
+      login(token, data.user.isAdmin);  // Use login from UserContext
+    } catch (error) {
+      console.error("Error retrieving user details:", error);
     }
   };
 

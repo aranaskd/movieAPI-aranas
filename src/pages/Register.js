@@ -5,7 +5,7 @@ import { Notyf } from 'notyf';
 import 'notyf/notyf.min.css';
 import '../styles/Register.css';
 
-const url_api = "http://localhost:4000";
+const url_api = "https://movieapp-api-lms1.onrender.com";
 
 function Register() {
   const [email, setEmail] = useState('');

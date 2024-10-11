@@ -3,13 +3,13 @@ import axios from 'axios';
 import { Modal, Button, Form, Card, Container, Row, Col } from 'react-bootstrap';
 import { Notyf } from 'notyf';
 import 'notyf/notyf.min.css';
-import { useUser } from '../contexts/UserContext'; // Import useUser hook
+import { useUser } from '../contexts/UserContext';
 
-const url_api = "http://localhost:4000";
+const url_api = "https://movieapp-api-lms1.onrender.com";
 const notyf = new Notyf();
 
 export default function Movies() {
-  const { user } = useUser(); // Access user from context
+  const { user } = useUser();
   const [movies, setMovies] = useState([]);
   const [error, setError] = useState(null);
   const [showCommentModal, setShowCommentModal] = useState(false);
@@ -48,7 +48,7 @@ export default function Movies() {
   };
 
   const handleAddComment = (movieId) => {
-    setCurrentMovieId(movieId); // Set the current movie ID for the comment
+    setCurrentMovieId(movieId);
     setShowCommentModal(true);
   };
 
@@ -67,18 +67,16 @@ export default function Movies() {
 
     setLoading(true);
     try {
-      // Use the token from user context in the Authorization header
-      const response = await axios.patch(
+      await axios.patch(
         `${url_api}/movies/addComment/${currentMovieId}`,
         { comment },
         {
           headers: {
-            Authorization: `Bearer ${user?.token}`, // Include token if available
+            Authorization: `Bearer ${user?.token}`,
           },
         }
       );
       notyf.success("Comment added successfully!");
-      console.log('Backend response:', response.data); // Confirm response
       handleCloseCommentModal();
     } catch (err) {
       console.error('Error adding comment:', err);
@@ -104,9 +102,12 @@ export default function Movies() {
                 <Button variant="primary" className="me-2" onClick={() => handleViewDetails(movie._id)}>
                   View Details
                 </Button>
-                <Button variant="warning" onClick={() => handleAddComment(movie._id)}>
-                  Add Comment
-                </Button>
+                {/* Conditionally render the Add Comment button */}
+                {user && !user.isAdmin && (
+                  <Button variant="warning" onClick={() => handleAddComment(movie._id)}>
+                    Add Comment
+                  </Button>
+                )}
               </Card.Footer>
             </Card>
           </Col>
@@ -170,11 +171,7 @@ export default function Movies() {
           <Button variant="secondary" onClick={handleCloseCommentModal}>
             Cancel
           </Button>
-          <Button
-            variant="primary"
-            onClick={handleSaveComment}
-            disabled={loading}
-          >
+          <Button variant="primary" onClick={handleSaveComment} disabled={loading}>
             {loading ? "Saving..." : "Save Comment"}
           </Button>
         </Modal.Footer>

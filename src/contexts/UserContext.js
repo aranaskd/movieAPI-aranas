@@ -1,6 +1,5 @@
 import React, { createContext, useContext, useState, useEffect } from 'react';
 
-// Create the context
 const UserContext = createContext();
 
 // Custom hook for using context
@@ -22,8 +21,9 @@ export const UserProvider = ({ children }) => {
     }
   }, [user]);
 
-  const login = (token) => {
-    setUser({ token });
+  const login = (token, isAdmin) => {
+    // Store both token and isAdmin in user state
+    setUser({ token, isAdmin });
   };
 
   const logout = () => {
@@ -37,3 +37,5 @@ export const UserProvider = ({ children }) => {
     </UserContext.Provider>
   );
 };
+
+export default UserContext;

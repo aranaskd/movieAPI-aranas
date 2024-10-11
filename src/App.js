@@ -5,6 +5,7 @@ import Home from './pages/Home';
 import Login from './pages/Login';
 import Register from './pages/Register';
 import Movies from './pages/Movies';
+import AdminDashboard from './components/AdminDashboard';
 
 
 function App() {
@@ -17,6 +18,7 @@ function App() {
           <Route path="/login" element={<Login />} />
           <Route path="/register" element={<Register />} />
           <Route path="/movies" element={<Movies />} />
+          <Route path="/admin" element={<AdminDashboard />} /> {/* Admin dashboard route */}
         </Routes>
       </Router>
     </div>

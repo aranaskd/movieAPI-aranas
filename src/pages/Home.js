@@ -2,11 +2,10 @@ import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import { Modal, Button, Container, Row, Col, Card } from 'react-bootstrap';
 
-const url_api = "http://localhost:4000";
+const url_api = "https://movieapp-api-lms1.onrender.com";
 
 function Home() {
   const [movies, setMovies] = useState([]);
-  const [error, setError] = useState(null);
   const [showModal, setShowModal] = useState(false);
   const [selectedMovie, setSelectedMovie] = useState(null);
   const [loadingDetails, setLoadingDetails] = useState(false);
@@ -20,7 +19,7 @@ function Home() {
         setMovies(randomMovies);
       } catch (err) {
         console.error('Error fetching movies:', err);
-        setError('Could not fetch movies. Please try again later.');
+
       }
     };
     fetchMovies();
@@ -34,7 +33,6 @@ function Home() {
       setShowModal(true);
     } catch (err) {
       console.error('Error fetching movie details:', err);
-      setError('Could not fetch movie details. Please try again later.');
     } finally {
       setLoadingDetails(false);
     }
@@ -55,7 +53,6 @@ function Home() {
 
       <div className="text-center">
         <h2 className="mb-4">Featured Movies</h2>
-        {error && <p className="text-danger">{error}</p>}
       </div>
       
       <Row>

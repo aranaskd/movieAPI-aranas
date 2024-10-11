@@ -1,9 +1,15 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { useUser } from '../contexts/UserContext';
 
 function Navbar() {
-  const { user, logout } = useUser();
+  const { logout, user } = useUser();
+  const navigate = useNavigate();
+
+  const handleLogout = () => {
+    logout();
+    navigate('/'); // Redirect to home page after logout
+  };
 
   return (
     <nav className="navbar navbar-expand-lg navbar-light bg-light">
@@ -28,11 +34,19 @@ function Navbar() {
               Movies
             </Link>
           </li>
+          {/* Conditionally render Admin Dashboard link if user is an admin */}
+          {user?.isAdmin && (
+            <li className="nav-item">
+              <Link className="nav-link" to="/admin">
+                Admin Dashboard
+              </Link>
+            </li>
+          )}
         </ul>
         <ul className="navbar-nav ms-auto">
           {user ? (
             <li className="nav-item">
-              <button className="btn btn-link nav-link" onClick={logout}>
+              <button className="btn btn-link nav-link" onClick={handleLogout}>
                 Logout
               </button>
             </li>
